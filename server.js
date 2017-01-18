@@ -1,3 +1,5 @@
+"use strict";
+
 var express = require('express');
 var webpackDevMiddleware = require('webpack-dev-middleware');
 var webpack = require('webpack');
@@ -5,25 +7,33 @@ var webpackConfig = require('./webpack.config.js');
 var app = express();
 var compiler = webpack(webpackConfig);
 var webpackHotMiddleware = require("webpack-hot-middleware");
+let sassMiddleware = require("node-sass-middleware");
 
 app.use(express.static(__dirname + "/www"));
 // app.use(express.static(__dirname));
 
-app.set('views', __dirname + '/src/views');
-app.set('view engine', 'pug');
+app.set("views", __dirname + "/src/views");
+app.set("view engine", "pug");
 
-app.get('/', function (req, res) {
-  res.render('index');
+app.get("/", function (req, res) {
+  res.render("index");
 })
 
 app.use(webpackDevMiddleware(compiler, {
     hot: true,
     filename: "bundle.js",
-    publicPath: "/assets/",
+    publicPath: "/www/",
     stats: {
         colors: true,
     },
     historyApiFallback: true,
+}));
+
+app.use(sassMiddleware({
+    src: __dirname + "/src/styles",
+    dest: __dirname + "/www",
+    debug: true,
+    indentedSyntax: true,
 }));
 
 app.use(webpackHotMiddleware(compiler, {
