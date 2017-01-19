@@ -8,8 +8,8 @@ var app = express();
 var compiler = webpack(webpackConfig);
 var webpackHotMiddleware = require("webpack-hot-middleware");
 let sassMiddleware = require("node-sass-middleware");
-
-app.use(express.static(__dirname + "/www"));
+//
+// app.use(express.static(__dirname + "/www"));
 // app.use(express.static(__dirname));
 
 app.set("views", __dirname + "/src/views");
@@ -28,19 +28,21 @@ app.use(webpackDevMiddleware(compiler, {
     },
     historyApiFallback: true,
 }));
+app.use(webpackHotMiddleware(compiler, {
+    log: console.log,
+    path: "/__webpack_hmr",
+    heartbeat: 10 * 1000,
+}));
 
 app.use(sassMiddleware({
     src: __dirname + "/src/styles",
     dest: __dirname + "/www",
     debug: true,
     indentedSyntax: true,
+    prefix: "/www",
 }));
 
-app.use(webpackHotMiddleware(compiler, {
-    log: console.log,
-    path: "/__webpack_hmr",
-    heartbeat: 10 * 1000,
-}));
+app.use(express.static(__dirname + "/www"));
 
 var server = app.listen(3001, function(){
     var host = server.address().address;
