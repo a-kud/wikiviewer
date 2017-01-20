@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDom from "react-dom";
-import SearchForm from "./components/SearchForm";
+import App from "./components/App";
 
 const container = document.querySelector(".container");
 
-ReactDom.render(<SearchForm />, container);
+ReactDom.render(<App />, container);
 
 if (module.hot) {
     module.hot.accept();
