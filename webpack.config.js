@@ -20,8 +20,8 @@ var config = {
                 loaders: ["babel"],
             },
             {
-                test: /\.css$/,
-                loader: "style-loader!css-loader"
+                test: /\.sass$/,
+                loaders: ["style-loader", "css-loader", "sass-loader"],
             },
         ],
     },

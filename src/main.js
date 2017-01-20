@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDom from "react-dom";
 import App from "./components/App";
+require("./styles/main.sass");
 
 const container = document.querySelector(".container");
 
