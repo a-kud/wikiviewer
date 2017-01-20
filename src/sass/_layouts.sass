@@ -1,11 +1,19 @@
-html
-    +box-sizing(border-box)
-
-*, *:before, *:after
-    +box-sizing(inherit)
-
 .container, #search-form
     display: flex
 
+.container
+    height: 100vh
+    justify-content: center
+    align-items: center
+
+#btn-search, #btn-random
+    flex: 0 1 30%
+
+
+#seachbar
+    flex: 1 1 100%
+
 #search-form
-    flex-flow: column nowrap
+    justify-content: center
+    width: 60vw
+    flex-flow: row wrap
