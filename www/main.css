@@ -1,3 +1,5 @@
-.container {
-  display: flex;
+.container, #search-form {
+  display: flex; }
+
+#search-form {
   flex-flow: column nowrap; }

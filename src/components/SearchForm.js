@@ -3,10 +3,10 @@ import React from "react";
 class SearchForm extends React.Component {
     render() {
         return(
-            <form>
+            <form id="search-form">
                 <input type="text"></input>
-                <button type="submit" name="action" value="update">Update</button>
-                <button type="submit" name="action" value="delete">Delete</button>
+                <button type="button" value="update">Search</button>
+                <button type="button" value="delete">Random Article</button>
             </form>
         );
     }
