@@ -9,6 +9,11 @@ class App extends React.Component {
             searchResults: {},
             searchTerm: null,
         };
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(e) {
+        this.setState({searchTerm: e.target.value});
     }
 
     //term - string
@@ -23,11 +28,12 @@ class App extends React.Component {
         result = fetch(request).then((resp) => resp.json()).then((json) => json);
         return result;
     }
-    
+
     render() {
         return(
             <div className="app">
-            <SearchForm />
+            <SearchForm searchTerm={this.state.searchTerm}
+                        handleChange={this.handleChange}/>
             <SearchResults />
             </div>
         );
