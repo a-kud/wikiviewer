@@ -20,9 +20,11 @@ class App extends React.Component {
     //term - string
     // returns Object
     getSearchResults(term) {
+
         let baseUrl = "https://en.wikipedia.org/w/api.php",
             urlSearch = `?action=query&list=search&srlimit=50&format=json&origin=*&srsearch=${term}`;
-            let request = new Request(baseUrl + urlSearch/*, {mode: "cors"}*/),
+
+        let request = new Request(baseUrl + urlSearch),
             result;
 
         result = fetch(request).then((resp) => resp.json()).then((json) => {
