@@ -6,10 +6,11 @@ class App extends React.Component {
     constructor() {
         super();
         this.state = {
-            searchResults: {},
+            searchResults: null,
             searchTerm: null,
         };
-        this.handleChange = this.handleChange.bind(this);
+        this.handleChange = this.handleChange.bind(this); // http://bit.ly/2jD3JTD
+        this.getSearchResults = this.getSearchResults.bind(this);
     }
 
     handleChange(e) {
@@ -20,12 +21,14 @@ class App extends React.Component {
     // returns Object
     getSearchResults(term) {
         let baseUrl = "https://en.wikipedia.org/w/api.php",
-            urlSearch = `?action=query&list=search&
-                          srsearch=${term}&srlimit=50&format=json`;
-        let request = new Request(baseUrl + urlSearch, {mode: "cors"}),
+            urlSearch = `?action=query&list=search&srlimit=50&format=json&origin=*&srsearch=${term}`;
+            let request = new Request(baseUrl + urlSearch/*, {mode: "cors"}*/),
             result;
 
-        result = fetch(request).then((resp) => resp.json()).then((json) => json);
+        result = fetch(request).then((resp) => resp.json()).then((json) => {
+            this.setState({searchResults: json});
+            return json;
+        });
         return result;
     }
 
@@ -33,7 +36,8 @@ class App extends React.Component {
         return(
             <div className="app">
             <SearchForm searchTerm={this.state.searchTerm}
-                        handleChange={this.handleChange}/>
+                        getSearch={this.getSearchResults}
+                        onChange={this.handleChange}/>
             <SearchResults />
             </div>
         );
