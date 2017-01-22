@@ -7,7 +7,7 @@ var webpackConfig = require('./webpack.config.js');
 var app = express();
 var compiler = webpack(webpackConfig);
 var webpackHotMiddleware = require("webpack-hot-middleware");
-let sassMiddleware = require("node-sass-middleware");
+
 //
 // app.use(express.static(__dirname + "/www"));
 // app.use(express.static(__dirname));
