@@ -9,9 +9,11 @@ class SearchForm extends React.Component {
                 <button type="button" id="btn-search" onClick={() => {
                     this.props.getSearch(this.props.searchTerm);
                 }}>Search</button>
-                <button type="button" id="btn-random">
-                    <a href="https://en.wikipedia.org/wiki/Special:Random" target="_blank">Random Article</a>
-                </button>
+
+                <a href="https://en.wikipedia.org/wiki/Special:Random" target="_blank">
+                    <button type="button" id="btn-random">Random Article</button>
+                </a>
+
             </form>
         );
     }
