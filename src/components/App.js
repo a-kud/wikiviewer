@@ -28,7 +28,9 @@ class App extends React.Component {
             result;
 
         result = fetch(request).then((resp) => resp.json()).then((json) => {
-            this.setState({searchResults: json});
+            this.setState({
+                searchResults: json,
+            });
             return json;
         });
         return result;
@@ -40,7 +42,7 @@ class App extends React.Component {
             <SearchForm searchTerm={this.state.searchTerm}
                         getSearch={this.getSearchResults}
                         onChange={this.handleChange}/>
-            <SearchResults />
+            <SearchResults searchData={this.state.searchResults}/>
             </div>
         );
     }
