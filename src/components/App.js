@@ -1,4 +1,5 @@
 import React from "react";
+import htmlparser from "htmlparser";
 import SearchForm from "./SearchForm";
 import SearchResults from "./SearchResults";
 
@@ -35,6 +36,14 @@ class App extends React.Component {
         });
         return result;
     }
+
+    // s - string
+    // parseSnippet(s) {
+    //     //let re = /<\/?span\sclass="\w+">*(\w+)<\/span\>/
+    //     var handler = new Tautologistics.NodeHtmlParser.DefaultHandler();
+    //     var parser = new Tautologistics.NodeHtmlParser.Parser(handler);
+    //     parser.parseComplete(s);
+    // }
 
     render() {
         return(
