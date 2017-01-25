@@ -1,20 +1,10 @@
 import React from "react";
-import htmlparser from "htmlparser";
+import SearchRow from "./SearchRow"
 
 class SearchResults extends React.Component {
 
     parseSnippet(s) {
         //let re = /<\/?span\sclass="\w+">*(\w+)<\/span\>/
-        // var handler = new htmlparser.DefaultHandler((err, dom) => {
-        //     if(err) {
-        //         console.error(`Error while pasring: ${err}`);
-        //     } else {
-        //         console.log(dom);
-        //     }
-        // });
-        // var parser = new htmlparser.Parser(handler);
-        // parser.parseComplete(s);
-        // //console.log(JSON.stringify(handler.dom, null, 2));
         let parser = new DOMParser();
         let htmlDoc = parser.parseFromString(s, "text/html");
         // console.log(htmlDoc.getElementsByTagName("body"));
@@ -23,11 +13,12 @@ class SearchResults extends React.Component {
 
     render() {
         let snippet = this.props.searchData ?  this.props.searchData.query.search[0].snippet : null;
-        if (snippet) {
-            console.log(snippet)
+        let numOfRows = this.props.searchData ?  this.props.searchData.query.search.length : null;
+        if (numOfRows) {
+            let rows = [...Array(numOfRows)].map((x, i) => <SearchRow  key={i + 1}  />)
             return(
-                <div className="search-results" dangerouslySetInnerHTML={{__html: snippet}}>
-                    // { this.parseSnippet(snippet) }
+                <div className="search-results"/* dangerouslySetInnerHTML={{__html: snippet}}*/>
+                    {rows}
                 </div>
             );
         } else {return null;}
