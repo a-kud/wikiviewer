@@ -1,5 +1,4 @@
 import React from "react";
-import htmlparser from "htmlparser";
 import SearchForm from "./SearchForm";
 import SearchResults from "./SearchResults";
 
